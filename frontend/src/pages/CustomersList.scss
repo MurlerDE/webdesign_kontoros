@@ -1,0 +1,249 @@
+@import '../styles/tokens';
+
+.customers-list {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--text);
+    }
+  }
+
+  &__search {
+    margin-bottom: 1.5rem;
+
+    .search-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: #646cff;
+        box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+      }
+    }
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm), 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.customers-list-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.customers-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background: #f8f9fa;
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 2px solid #e9ecef;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.15s;
+      border-bottom: 1px solid #e9ecef;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: 1rem;
+      color: #495057;
+
+      &.no-results {
+        text-align: center;
+        padding: 3rem;
+        color: #999;
+      }
+    }
+  }
+
+  .customer-name {
+    font-weight: 500;
+
+    a {
+      color: #646cff;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #535bf2;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &--active {
+    background-color: #d1f4e0;
+    color: #0f5132;
+  }
+
+  &--inactive {
+    background-color: #f8d7da;
+    color: #842029;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+
+  &--primary {
+    background-color: #646cff;
+    color: white;
+
+    &:hover {
+      background-color: #535bf2;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
+    }
+  }
+
+  &--secondary {
+    background-color: #6c757d;
+    color: white;
+
+    &:hover {
+      background-color: #5a6268;
+    }
+  }
+
+  &--small {
+    padding: 0.4em 0.8em;
+    font-size: 0.875rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .customers-list {
+    &__search .search-input {
+      background-color: #1a1a1a;
+      border-color: #444;
+      color: white;
+    }
+
+    &__table-wrapper {
+      background: #1a1a1a;
+    }
+  }
+
+  .customers-table {
+    thead {
+      background: #2d2d2d;
+
+      th {
+        color: rgba(255, 255, 255, 0.87);
+        border-bottom-color: #444;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom-color: #444;
+
+        &:hover {
+          background-color: #2d2d2d;
+        }
+      }
+
+      td {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .customers-list {
+    padding: 1rem;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__search .search-input {
+      max-width: 100%;
+    }
+  }
+
+  .customers-table {
+    thead th,
+    tbody td {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .actions {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+}
